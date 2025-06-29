@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: Gatherox
+## Author: tobarisu
+## Notes: Records and displays crafting node locations (herbs, ore, fish, leather)
+## SavedVariables: GatheroxData, GatheroxSettings
+## Version: 1.0.0
+
+embeds.xml
+localization.xml
+core.lua 

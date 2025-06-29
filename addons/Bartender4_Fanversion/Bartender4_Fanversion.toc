@@ -1,0 +1,14 @@
+## Interface: 30300
+## Title: Bartender4_Fanversion
+## Version: 1.0.0
+## Author: TOBARISU
+## Notes: Fan version of Bartender4 with enhanced keybinding features
+## DefaultState: Enabled
+## SavedVariables: Bartender4_FanversionDB
+
+core.lua
+actionBars.lua
+actionButton.lua
+keybinding.lua
+ui.lua
+localization/enUS.lua 

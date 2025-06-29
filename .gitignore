@@ -33,4 +33,7 @@ Thumbs.db
 *.disabled
 
 # Lua bytecode (if any)
-*.lua~ 
+*.lua~
+
+# Personal configuration files (not for public)
+tools/deploy_addons.sh 

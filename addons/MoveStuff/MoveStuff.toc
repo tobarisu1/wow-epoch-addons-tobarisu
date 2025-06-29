@@ -1,0 +1,12 @@
+## Interface: 30300
+## Title: MoveStuff
+## Version: 1.0.0
+## Author: TOBARISU
+## Notes: Move and resize any UI element while retaining the classic UI feel
+## DefaultState: Enabled
+## SavedVariables: MoveStuffDB
+
+core.lua
+frameManager.lua
+ui.lua
+localization/enUS.lua 

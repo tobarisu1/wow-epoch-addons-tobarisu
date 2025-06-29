@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: CursorTooltip
+## Author: tobarisu
+## Notes: Anchors tooltips to cursor
+## SavedVariables: CursorTooltipSettings
+## Version: 1.0.0
+
+embeds.xml
+localization.xml
+core.lua 

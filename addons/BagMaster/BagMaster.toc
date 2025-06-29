@@ -1,0 +1,12 @@
+## Interface: 30300
+## Title: BagMaster
+## Author: tobarisu
+## Notes: Advanced inventory manager with automatic categorization and sorting
+## SavedVariables: BagMasterGlobalSettings
+## Version: 1.0.0
+## OptionalDeps: Ace3, LibItemSearch
+
+embeds.xml
+localization.xml
+core.lua
+components.xml 

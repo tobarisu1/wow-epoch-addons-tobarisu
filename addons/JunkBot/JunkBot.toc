@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: JunkBot
+## Author: tobarisu
+## Notes: Automatically sells junk items to vendors
+## SavedVariables: JunkBotSettings
+## Version: 1.0.0
+
+embeds.xml
+localization.xml
+core.lua 

@@ -1,0 +1,383 @@
+# WoW 3.3.5a Addon Collection Catalog
+
+```
+████████╗ ██████╗ ██████╗  █████╗ ██████╗ ██╗███████╗██╗   ██╗
+╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗██╔══██╗██║██╔════╝██║   ██║
+   ██║   ██║   ██║██████╔╝███████║██████╔╝██║███████╗██║   ██║
+   ██║   ██║   ██║██╔══██╗██╔══██║██╔══██╗██║╚════██║██║   ██║
+   ██║   ╚██████╔╝██████╔╝██║  ██║██║  ██║██║███████║╚██████╔╝
+   ╚═╝    ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚══════╝ ╚═════╝ 
+```
+
+**Project**: wow-epoch-addons-tobarisu  
+**Version**: 1.0.0  
+**Date**: June 2025  
+**Author**: TOBARISU  
+**WoW Version**: 3.3.5a (WotLK)  
+**Interface**: 30300  
+
+This catalog documents all addons in this collection, their features, and functionality for World of Warcraft 3.3.5a (WotLK).
+
+---
+
+## 📦 BagMaster
+**Version:** 1.0.0  
+**Author:** tobarisu  
+**Interface:** 30300 (WoW 3.3.5a)  
+**Status:** ✅ Active Development
+
+### Description
+Advanced inventory manager inspired by Bagnon with automatic categorization, sorting, and multi-inventory support.
+
+### Key Features
+- **Automatic Combined View**: Opening any bag automatically shows a combined inventory window with all bags merged
+- **Smart Categorization**: Items automatically sorted into categories (Consumables, Equipment, Trade Goods, Quest, Currency, Junk, Other)
+- **Slot-to-Bag Mapping**: Hover over items to see exactly which bag and slot they occupy
+- **Multi-Inventory Support**: Switch between Bags, Bank, and Keyring views
+- **Classic UI Integration**: Social, Guild, Character, Spellbook, Talents, Achievements, Quest Log, Help, Options, and Store buttons integrated into the inventory window
+- **Fantasy-Themed UI**: Ornate styling with gold accents and decorative elements
+- **Real-time Updates**: Inventory updates automatically when items change
+- **Global Settings**: Settings shared across all characters
+
+### Commands
+- `/bagmaster` or `/bm` - Toggle the main window
+- `/bagmaster bags` - Switch to bags view
+- `/bagmaster bank` - Switch to bank view  
+- `/bagmaster keyring` - Switch to keyring view
+- `/bagmaster help` - Show help
+
+### Settings
+- **Auto-sort on open**: Automatically sort when opening bags
+- **Auto-organize on open**: Automatically organize when opening bags
+- **Show categories**: Toggle category labels
+- **Category order**: Customize category display order
+- **Show bank**: Enable bank integration
+- **Show keyring**: Enable keyring integration
+- **Default view**: Set default inventory view
+- **Frame position**: Remember window position
+- **Frame size**: Remember window size
+
+### Technical Details
+- **Dependencies**: Ace3 libraries (AceAddon-3.0, AceEvent-3.0, AceConsole-3.0, AceLocale-3.0)
+- **Saved Variables**: Global only (BagMasterDB, BagMasterSettings)
+- **Hooks**: OpenBackpack, OpenBag, ToggleBackpack, ToggleBag functions
+- **Events**: BAG_UPDATE, ITEM_LOCK_CHANGED, BANKFRAME_OPENED/CLOSED
+- **Performance**: Optimized for real-time updates
+- **Inventory Types**: Supports bags (0-4), bank (-1, 5-11), keyring (-2)
+- **Error Handling**: Safe LibStub access with pcall() fallbacks
+- **Cross-Character**: Global settings work across all characters
+- **Classic UI Elements**: 10 integrated buttons for common game functions
+
+### Current Features
+- ✅ Automatic item categorization
+- ✅ Multi-inventory support (bags, bank, keyring)
+- ✅ Fantasy-themed UI with view switching
+- ✅ Real-time inventory updates
+- ✅ Smart sorting by quality and name
+- ✅ Slash commands for all functions
+- ✅ Settings persistence
+- ✅ Event-driven updates
+- ✅ Proper item interaction for each inventory type
+- ✅ Automatic bag opening and slot-to-bag mapping
+- ✅ Classic UI integration with game functions
+
+### Planned Features
+- [ ] Item context menus
+- [ ] Custom category rules
+- [ ] Item search functionality
+- [ ] Export/import settings
+- [ ] Multi-character support
+
+---
+
+## 🤖 JunkBot
+**Version:** 1.0.0  
+**Author:** tobarisu  
+**Interface:** 30300 (WoW 3.3.5a)  
+**Status:** ✅ Complete
+
+### Description
+Simple and efficient auto-sell junk addon that automatically sells gray-quality (junk) items to vendors. Lightweight and unobtrusive, perfect for keeping your bags clean.
+
+### Key Features
+- **🔄 Auto-Sell**: Automatically sells gray items when you open a vendor
+- **💰 Smart Detection**: Only sells items with a sell price > 0
+- **📊 Summary Report**: Shows how many items were sold and total value
+- **⚡ Manual Control**: `/junkbot` command to sell junk manually
+- **🎯 Efficient**: Minimal performance impact, classic WoW 3.3.5a compatible
+
+### Commands
+- `/junkbot` - Manually sell junk items
+
+### How It Works
+- Listens for `MERCHANT_SHOW` event (when you open a vendor)
+- Scans all bags (0-4) for gray-quality items
+- Automatically sells items with sell price > 0
+- Reports results in chat with item count and total value
+
+### Technical Details
+- **Dependencies**: None (standalone)
+- **Event Handling**: MERCHANT_SHOW event
+- **Performance**: Minimal impact, efficient bag scanning
+- **Compatibility**: WoW 3.3.5a native
+- **Cross-Character**: Global settings work across all characters
+
+### Current Features
+- ✅ Automatic junk selling at vendors
+- ✅ Manual sell command
+- ✅ Sell summary with coin display
+- ✅ Efficient bag scanning
+- ✅ No configuration needed
+- ✅ Global settings across characters
+
+---
+
+## 🖱️ CursorTooltip
+**Version:** 1.0.0  
+**Author:** tobarisu  
+**Interface:** 30300 (WoW 3.3.5a)  
+**Status:** ✅ Complete
+
+### Description
+Lightweight addon that anchors tooltips to the cursor for better usability. Makes tooltips follow your mouse cursor instead of appearing in fixed positions.
+
+### Key Features
+- **🎯 Cursor Following**: Tooltips follow your mouse cursor
+- **📋 Dual Support**: Works with both GameTooltip and ItemRefTooltip
+- **⚡ Lightweight**: Minimal performance impact
+- **🔧 Simple**: No configuration needed, just works
+
+### What It Affects
+- **GameTooltip**: Regular tooltips (items, units, spells, etc.)
+- **ItemRefTooltip**: Item links in chat, quest text, etc.
+
+### How It Works
+- Uses `hooksecurefunc` to intercept `GameTooltip_SetDefaultAnchor`
+- Uses `hooksecurefunc` to intercept `ItemRefTooltip_SetDefaultAnchor`
+- Sets anchor to `ANCHOR_CURSOR` for both tooltip types
+- Maintains compatibility with other addons
+
+### Technical Details
+- **Dependencies**: None (standalone)
+- **Method**: Hooksecurefunc for safe function overriding
+- **Performance**: Minimal impact, only affects tooltip positioning
+- **Compatibility**: WoW 3.3.5a native, works with other addons
+- **Cross-Character**: Global settings work across all characters
+
+### Current Features
+- ✅ Cursor-anchored GameTooltip
+- ✅ Cursor-anchored ItemRefTooltip
+- ✅ Safe function hooking
+- ✅ No configuration needed
+- ✅ Global settings across characters
+
+---
+
+## 🗺️ Gatherox
+**Version:** 1.0.0  
+**Author:** tobarisu  
+**Interface:** 30300 (WoW 3.3.5a)  
+**Status:** ✅ Active Development
+
+### Description
+Crafting node tracker inspired by Gatherer for recording resource locations.
+
+### Key Features
+- **Node Detection**: Automatically detects and records gathering nodes
+- **Category Support**: Herbs, Ore, Fish, Leather, and other resources
+- **Coordinate Storage**: Saves exact coordinates for each node
+- **Minimap Integration**: Shows recorded nodes on minimap with category icons
+- **World Map Integration**: Displays nodes on world map when opened
+- **Interactive Tooltips**: Hover over nodes to see resource type and last found time
+- **Minimap Button**: Toggle node display and access options
+- **Data Export**: Export recorded data to chat
+- **Global Settings**: Settings shared across all characters
+
+### Supported Node Types
+- **Herbs**: Silverleaf, Peacebloom, Earthroot, Mageroyal, etc.
+- **Ore**: Copper Vein, Tin Vein, Iron Deposit, Thorium Vein, etc.
+- **Fish**: Fishing pools, wreckage, and chests
+- **Leather**: Skinnable creatures (Wolf, Bear, Deer, etc.)
+
+### Commands
+- `/gatherox` or `/gox` - Toggle node display
+- `/gatherox clear` - Clear all recorded data
+- `/gatherox export` - Export data to chat
+- `/gatherox help` - Show help
+
+### How It Works
+- Listens for `LOOT_OPENED` event to detect gathering
+- Checks tooltips and targets for known node names
+- Records player position and zone information
+- Prevents duplicate recordings of same location
+- Maintains count of visits to each node
+
+### Technical Details
+- **Dependencies**: Ace3 libraries
+- **Event Handling**: LOOT_OPENED, PLAYER_ENTERING_WORLD, ZONE_CHANGED_NEW_AREA
+- **Performance**: Minimal impact, efficient node detection
+- **Compatibility**: WoW 3.3.5a native
+- **Cross-Character**: Global data and settings work across all characters
+
+### Current Features
+- ✅ Automatic node detection and recording
+- ✅ Support for herbs, ore, fish, and leather nodes
+- ✅ Persistent data storage
+- ✅ Duplicate detection and count tracking
+- ✅ Data export functionality
+- ✅ Slash commands for management
+- ✅ Global settings across characters
+
+### Planned Features
+- [ ] UI window for browsing recorded nodes
+- [ ] Minimap integration
+- [ ] World map integration
+- [ ] Node filtering by type
+- [ ] Zone-based organization
+
+---
+
+## 📋 Addon Development Guidelines
+
+### Code Standards
+- **WoW Version**: 3.3.5a (Interface: 30300)
+- **Language**: Lua 5.1
+- **Framework**: Ace3 (with fallbacks)
+- **Error Handling**: pcall() for API calls
+- **Performance**: Local variables, minimal OnUpdate scripts
+
+### File Structure
+```
+addons/
+├── AddonName/
+│   ├── AddonName.toc          # Addon manifest
+│   ├── core.lua               # Main logic
+│   ├── embeds.xml             # Library loading
+│   ├── components.xml         # UI components
+│   ├── localization.xml       # Localization
+│   ├── components/            # UI components
+│   ├── libs/                  # Embedded libraries
+│   └── localization/          # Language files
+```
+
+### Deployment
+- Use `tools/deploy_addons.sh` for personal deployment
+- Use `tools/deploy_addons_public.sh` for public distribution
+- Target directory: WoW Interface/AddOns/
+
+### Testing
+- Test with `/reload` in-game
+- Use `/dump` for debugging
+- Verify compatibility with other addons
+- Test on different WoW 3.3.5a servers
+
+---
+
+## 🔧 Development Tools
+
+### Deployment Scripts
+- **Personal**: `tools/deploy_addons.sh` - For development
+- **Public**: `tools/deploy_addons_public.sh` - For distribution
+
+### Templates
+- **Basic Addon**: `templates/basic_addon.toc` - Starting template
+- **Core Structure**: `templates/core.lua` - Basic addon structure
+
+### Documentation
+- **README.txt**: Project overview and setup
+- **CATALOG.txt**: This file - Addon documentation
+- **docs/**: Development documentation
+
+---
+
+## 📊 Addon Status Legend
+
+- ✅ **Active Development**: Currently being developed
+- 📋 **Planned**: Features planned for future development
+- 🚧 **In Progress**: Partially implemented
+- 🐛 **Bug Fixes**: Known issues being addressed
+- ✅ **Stable**: Production ready
+- 📚 **Documentation**: Needs documentation updates
+
+---
+
+## 🤝 Contributing
+
+This is a personal addon collection, but suggestions and feedback are welcome. All addons are designed for WoW 3.3.5a compatibility and follow WoW addon development best practices.
+
+---
+
+*Last Updated: 2024*  
+*WoW Version: 3.3.5a (WotLK)*  
+*Interface Version: 30300* 
+
+### 5. MoveStuff
+**Description**: Simple UI frame mover that allows moving and resizing any UI element while retaining the classic UI feel.
+
+**Key Features**:
+- **Dynamic Frame Discovery**: Automatically discovers all movable UI frames without hardcoded lists
+- **Frame Categorization**: Organizes frames into logical categories (Player, Target, Buffs, Bags, Chat, Minimap, Action Bars, Other)
+- **Visual Frame Selector**: Clean UI for browsing and selecting frames to move
+- **Search Functionality**: Find frames quickly with real-time search
+- **Frame Highlighting**: Visual feedback when selecting frames to move
+- **Click-to-Place**: Simple click interface for positioning frames
+- **Position Persistence**: Saves frame positions globally across all characters
+- **Combat Protection**: Prevents frame movement during combat
+- **Classic UI Retention**: Maintains the original WoW UI appearance
+
+**Commands**:
+- `/movestuff` or `/ms` - Show frame selector
+- `/movestuff [frame]` - Move a specific frame directly
+- `/movestuff reset` - Reset all frame positions
+- `/movestuff help` - Show help
+
+**Technical Details**:
+- **Interface**: 30300 (WoW 3.3.5a)
+- **Dependencies**: Ace3 libraries (with fallbacks)
+- **Saved Variables**: Global only (MoveStuffDB)
+- **Frame Types**: Supports Frame, Button, CheckButton, StatusBar, FontString, Texture, GameTooltip, MessageFrame, EditBox, Slider, Minimap
+- **Protected Frames**: Excludes system-critical frames (UIParent, WorldFrame, etc.)
+
+**Files**:
+- `MoveStuff.toc` - Addon manifest
+- `core.lua` - Main logic, frame discovery, and movement
+- `ui.lua` - Frame selector interface
+- `localization/enUS.lua` - English localization 
+
+### 6. Bartender4_Fanversion
+**Description**: Fan version of Bartender4 with enhanced keybinding features and action bar management.
+
+**Key Features**:
+- **Enhanced Keybinding Mode**: Hover over action buttons and press keys to bind them instantly
+- **Visual Feedback**: Buttons highlight when hovering in keybinding mode with button info display
+- **Modifier Support**: Full support for SHIFT, CTRL, ALT combinations (e.g., SHIFT-E, CTRL-ALT-1)
+- **Mouse Button Binding**: Bind mouse buttons and mouse wheel actions
+- **Action Bar Management**: Control visibility, position, scale, and alpha of all action bars
+- **Global Settings**: Settings shared across all characters
+- **Combat Protection**: Prevents keybinding changes during combat
+- **Persistent Storage**: Keybindings saved and restored between sessions
+- **Classic UI Retention**: Maintains original WoW 3.3.5a action bar appearance
+
+**Commands**:
+- `/bt4` or `/bartender4` - Toggle keybinding mode
+- `/bt4 keybind` - Enter keybinding mode
+- `/bt4 config` - Show configuration (placeholder)
+- `/bt4 reset` - Reset all settings
+- `/bt4 help` - Show help
+
+**Technical Details**:
+- **Interface**: 30300 (WoW 3.3.5a)
+- **Dependencies**: Ace3 libraries (with fallbacks)
+- **Saved Variables**: Global only (Bartender4_FanversionDB)
+- **Action Bars**: Supports all 5 action bars, pet bar, stance bar
+- **Keybinding Types**: Keyboard keys, mouse buttons, modifier combinations
+- **Events**: ACTIONBAR_UPDATE_STATE, ACTIONBAR_UPDATE_COOLDOWN, ACTIONBAR_UPDATE_USABLE, ACTIONBAR_UPDATE_RANGE
+
+**Files**:
+- `Bartender4_Fanversion.toc` - Addon manifest
+- `core.lua` - Main logic and action bar management
+- `keybinding.lua` - Enhanced keybinding functionality
+- `actionBars.lua` - Action bar handling (placeholder)
+- `actionButton.lua` - Action button handling (placeholder)
+- `ui.lua` - User interface components (placeholder)
+- `localization/enUS.lua` - English localization 

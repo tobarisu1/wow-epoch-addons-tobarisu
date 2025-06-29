@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: SimplePlates
+## Notes: Clean and minimalistic nameplates with class colors, monster icons, castbars, and swing timers
+## Author: TOBARISU
+## Version: 1.0.0
+## SavedVariables: SimplePlatesDB
+
+core.lua
+localization.xml
+localization/enUS.lua 

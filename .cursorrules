@@ -85,3 +85,11 @@
 - Test addons in-game with /reload command
 - Use the project structure defined in README.txt
 - All addons should be compatible with WoW 3.3.5a 
+
+## File Editing Efficiency
+- NEVER recreate entire files when making small updates
+- Use targeted edits with specific line ranges when possible
+- Only replace the sections that actually need to change
+- Use "// ... existing code ..." comments to indicate unchanged sections
+- Preserve existing code structure and formatting
+- When adding new functions or variables, insert them in logical locations without rewriting the entire file 

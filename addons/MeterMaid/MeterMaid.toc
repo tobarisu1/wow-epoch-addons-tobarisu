@@ -1,0 +1,10 @@
+## Interface: 30300
+## Title: MeterMaid
+## Notes: Simple and elegant damage/threat meter with translucent, movable window
+## Author: TOBARISU
+## Version: 1.0.0
+## SavedVariables: MeterMaidDB
+
+core.lua
+localization.xml
+localization/enUS.lua 

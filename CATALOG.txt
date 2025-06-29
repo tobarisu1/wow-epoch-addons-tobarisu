@@ -237,6 +237,162 @@ Crafting node tracker inspired by Gatherer for recording resource locations.
 
 ---
 
+## 🏷️ SimplePlates
+**Version:** 1.0.0  
+**Author:** tobarisu  
+**Interface:** 30300 (WoW 3.3.5a)  
+**Status:** ✅ Active Development
+
+### Description
+Clean and minimalistic nameplate addon inspired by TidyPlates, providing enhanced visibility for mobs, NPCs, and players with class colors, monster icons, castbars, and swing timers.
+
+### Key Features
+- **🎨 Clean Design**: Minimalistic nameplate design with enhanced visibility
+- **🎭 Class Colors**: Player names colored by their class (Warrior, Paladin, Hunter, etc.)
+- **🐾 Monster Icons**: Small icons indicating monster type (Humanoid, Beast, Demon, Dragonkin, etc.)
+- **📜 Castbars**: Visible castbars with spell icons and names
+- **⚔️ Swing Timer**: Small swing timer bar for melee combat
+- **⚙️ Configurable**: Toggle individual features on/off
+- **🎯 Target Focus**: Enhanced visibility for current target
+- **📱 Responsive**: Real-time updates for health, casting, and combat
+
+### Supported Monster Types
+- **Humanoid**: Humanoid creatures
+- **Beast**: Animal and beast creatures
+- **Demon**: Demon and demonic creatures
+- **Dragonkin**: Dragon and dragonkin creatures
+- **Elemental**: Elemental creatures
+- **Giant**: Giant and titan creatures
+- **Mechanical**: Mechanical and robotic creatures
+- **Undead**: Undead and ghostly creatures
+- **Critter**: Small critters and pets
+
+### Commands
+- `/splates` or `/simpleplates` - Toggle nameplates on/off
+- `/splates reload` - Reload the addon
+- `/splates reset` - Reset all settings to default
+
+### Settings
+- **Enabled**: Toggle the entire addon
+- **Show Class Colors**: Color player names by class
+- **Show Monster Icons**: Display monster type icons
+- **Show Castbars**: Display casting bars with spell info
+- **Show Swing Timer**: Display swing timer for melee
+- **Nameplate Scale**: Adjust size of nameplates
+- **Nameplate Width**: Customize nameplate width
+- **Nameplate Height**: Customize nameplate height
+
+### How It Works
+- Hooks into nameplate creation and updates
+- Replaces default nameplate elements with custom ones
+- Monitors combat events for swing timer
+- Tracks spell casting for castbar display
+- Uses WoW 3.3.5a API for unit information
+
+### Technical Details
+- **Dependencies**: None (standalone)
+- **Event Handling**: PLAYER_LOGIN, PLAYER_TARGET_CHANGED, COMBAT_LOG_EVENT_UNFILTERED, UNIT_SPELLCAST_*
+- **Performance**: Optimized for real-time updates
+- **Compatibility**: WoW 3.3.5a native
+- **Cross-Character**: Global settings work across all characters
+- **Hooks**: CreateNameplate, NamePlateDriverFrame events
+
+### Current Features
+- ✅ Clean minimalistic nameplate design
+- ✅ Class color support for players
+- ✅ Monster type icons for NPCs
+- ✅ Castbar with spell icons and names
+- ✅ Swing timer for melee combat
+- ✅ Configurable settings
+- ✅ Real-time updates
+- ✅ Global settings across characters
+
+### Planned Features
+- [ ] Threat indicators
+- [ ] Elite/Boss indicators
+- [ ] Raid target icons
+- [ ] Custom nameplate themes
+- [ ] Advanced configuration UI
+
+---
+
+## 📊 MeterMaid
+**Version:** 1.0.0  
+**Author:** tobarisu  
+**Interface:** 30300 (WoW 3.3.5a)  
+**Status:** ✅ Active Development
+
+### Description
+Simple and elegant damage/threat meter with a translucent, movable window and tabbed interface for tracking combat performance.
+
+### Key Features
+- **🎨 Translucent Design**: Clean, semi-transparent window that doesn't obstruct gameplay
+- **📱 Movable Interface**: Drag and drop window positioning with persistent location
+- **📑 Tabbed Interface**: Switch between Damage and Threat meters with simple tabs
+- **⚡ Real-time Updates**: Live combat data with DPS/TPS calculations
+- **📊 Formatted Numbers**: Clean number formatting (1.2k, 1.5m) for easy reading
+- **⏱️ Combat Timer**: Built-in combat duration tracking
+- **🔄 Data Reset**: Easy data clearing with reset button
+- **🎯 Simple Controls**: Basic start/stop functionality with slash commands
+
+### Supported Damage Types
+- **Melee Damage**: SWING_DAMAGE events
+- **Ranged Damage**: RANGE_DAMAGE events
+- **Spell Damage**: SPELL_DAMAGE events
+- **Periodic Damage**: SPELL_PERIODIC_DAMAGE events
+- **Threat Generation**: Threat tracking for tanking
+
+### Commands
+- `/metermaid start` or `/mm start` - Start the meter
+- `/metermaid stop` or `/mm stop` - Stop the meter
+- `/metermaid toggle` or `/mm toggle` - Toggle the meter on/off
+- `/metermaid reset` or `/mm reset` - Reset all data
+- `/metermaid position` or `/mm position` - Reset window position
+
+### Settings
+- **Enabled**: Toggle the entire addon
+- **Window Position**: Remember window location
+- **Window Size**: Customizable window dimensions
+- **Opacity**: Adjust transparency level
+- **Max Entries**: Number of players to display (default: 10)
+- **Auto Start**: Automatically start on combat
+- **Auto Stop**: Automatically stop when leaving combat
+
+### How It Works
+- Monitors COMBAT_LOG_EVENT_UNFILTERED for damage events
+- Tracks combat start/stop with PLAYER_REGEN events
+- Calculates DPS/TPS in real-time during combat
+- Displays top performers in a clean, sorted list
+- Maintains data until manually reset
+
+### Technical Details
+- **Dependencies**: None (standalone)
+- **Event Handling**: PLAYER_LOGIN, PLAYER_REGEN_DISABLED/ENABLED, COMBAT_LOG_EVENT_UNFILTERED
+- **Performance**: Optimized for real-time combat tracking
+- **Compatibility**: WoW 3.3.5a native
+- **Cross-Character**: Global settings work across all characters
+- **Data Storage**: In-memory with optional persistence
+
+### Current Features
+- ✅ Translucent movable window
+- ✅ Tabbed damage/threat interface
+- ✅ Real-time DPS/TPS calculations
+- ✅ Combat duration tracking
+- ✅ Clean number formatting
+- ✅ Slash command controls
+- ✅ Data reset functionality
+- ✅ Global settings across characters
+
+### Planned Features
+- [ ] Threat tracking implementation
+- [ ] Healing meter support
+- [ ] Data export functionality
+- [ ] Advanced configuration options
+- [ ] Combat log filtering
+- [ ] Session persistence
+
+---
+
 ## 📋 Addon Development Guidelines
 
 ### Code Standards

@@ -3,6 +3,9 @@
   WoW 3.3.5a compatible
 --]]
 
+-- luacheck: globals CreateFrame hooksecurefunc
+local frame = CreateFrame("Frame")
+
 local function AnchorToCursor(tooltip, parent)
   if tooltip and parent then
     tooltip:SetOwner(parent, "ANCHOR_CURSOR")

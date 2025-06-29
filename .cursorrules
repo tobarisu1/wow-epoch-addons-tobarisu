@@ -1,0 +1,87 @@
+# WoW Lua Addon Development Rules (WoW 3.3.5a)
+
+## WoW Version Compatibility
+- Target WoW version: 3.3.5a (WotLK)
+- Interface version: 30300
+- Use only API functions available in WoW 3.3.5a
+- Avoid newer API calls that were introduced in later expansions
+- Test compatibility with WoW 3.3.5a client
+
+## General Lua Guidelines
+- Use descriptive variable and function names
+- Comment your code thoroughly, especially for WoW API calls
+- Follow WoW API naming conventions
+- Keep addons lightweight and efficient
+- Use proper error handling with pcall() when appropriate
+- Prefer local variables over globals for performance
+
+## WoW-Specific Rules
+- Always use Interface: 30300 in .toc files for WoW 3.3.5a
+- Register events only when needed and unregister when done
+- Use proper event handling patterns with CreateFrame("Frame")
+- Implement slash commands for user interaction
+- Use SavedVariables for persistent data storage
+- Follow WoW's color coding system for chat messages
+- Use proper addon namespacing to avoid conflicts
+
+## Code Structure
+- Start with a basic frame for event handling
+- Use object-oriented patterns with tables for addon structure
+- Separate concerns into different files when addon grows
+- Use proper initialization in PLAYER_LOGIN event
+- Implement proper cleanup in PLAYER_LOGOUT event
+
+## Performance Guidelines
+- Minimize OnUpdate scripts, use timers instead
+- Cache frequently used API calls
+- Use local variables for better performance
+- Avoid creating frames in combat
+- Use proper event filtering to reduce unnecessary processing
+
+## Debugging and Testing
+- Use /dump for inspecting variables
+- Use /print for debug output with color coding
+- Test thoroughly in-game with /reload
+- Use proper error handling for API calls
+- Implement debug modes that can be toggled
+
+## File Organization
+- Use .toc files for addon metadata
+- Keep main logic in core.lua
+- Separate UI elements into separate files
+- Use proper file loading order in .toc
+- Include README.md for each addon
+
+## WoW API Best Practices
+- Always check if functions exist before calling
+- Use proper event registration patterns
+- Handle API changes between WoW versions
+- Use proper frame types for different purposes
+- Implement proper memory management
+
+## Documentation Standards
+- Document all public functions
+- Include usage examples in comments
+- Document any WoW API quirks or workarounds
+- Keep changelog in addon files
+- Include proper addon metadata in .toc
+
+## Security and Compatibility
+- Never use insecure functions in combat
+- Check for addon conflicts
+- Use proper namespacing
+- Implement version checking for compatibility
+- Follow WoW's addon security guidelines
+
+## Deployment and Testing
+- Create a deployment script to copy addons to WoW directory
+- Target directory: /run/media/tobarisu/Epsilon/ProjectEpoch/World.of.Warcraft.3.3.5a.Truewow/Data/enUS/Interface/AddOns
+- All addons must be encapsulated in their own folder
+- Script should handle copying, backup, and cleanup
+- Test deployment process regularly
+
+## Project-Specific Workflow
+- Follow the deployment workflow using tools/deploy_addons.sh
+- Test addons in-game with /reload command
+- Use the project structure defined in README.txt
+- All addons should be compatible with WoW 3.3.5a 

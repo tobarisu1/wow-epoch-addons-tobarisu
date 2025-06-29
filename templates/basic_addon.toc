@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: Basic Addon Template
+## Notes: A basic addon template for WoW 3.3.5a development
+## Author: Your Name
+## Version: 1.0.0
+## SavedVariables: BasicAddonDB
+
+core.lua 

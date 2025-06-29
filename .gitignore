@@ -1,5 +1,13 @@
 # WoW Addon Development .gitignore
 
+# Personal deployment script (not for public repo)
+tools/deploy_addons.sh
+
+# WoW addon development
+*.lua~
+*.toc~
+*.xml~
+
 # Backup files
 backups/
 *.bak

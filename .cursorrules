@@ -31,6 +31,17 @@
 - Use proper initialization in PLAYER_LOGIN event
 - Implement proper cleanup in PLAYER_LOGOUT event
 
+## Addon Initialization Requirements
+- ALL addons MUST have proper initialization that works with or without Ace3
+- Use dual initialization pattern: Ace3 OnInitialize/OnEnable + fallback PLAYER_LOGIN
+- Always include fallback initialization for when Ace3 libraries fail to load
+- Test initialization with debug output to verify addon loads correctly
+- Ensure all required functions exist before calling them
+- Never use placeholder functions that do nothing - implement basic functionality
+- Add debug output during initialization to help diagnose loading issues
+- Include slash command registration in both Ace3 and fallback initialization
+- Test addon loading with /reload command in-game
+
 ## Performance Guidelines
 - Minimize OnUpdate scripts, use timers instead
 - Cache frequently used API calls

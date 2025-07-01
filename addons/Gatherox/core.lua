@@ -65,6 +65,12 @@ Gatherox.Categories = {
 		color = {0.8, 0.4, 0.2, 1}, -- Brown
 		events = {'LOOT_OPENED'},
 		skills = {'Skinning'}
+	},
+	['Essences'] = {
+		icon = 'Interface\\Icons\\INV_Elemental_Mote_Water01',
+		color = {0.8, 0.2, 0.8, 1}, -- Purple
+		events = {'LOOT_OPENED'},
+		skills = {'All'}
 	}
 }
 
@@ -146,7 +152,13 @@ Gatherox.KnownNodes = {
 	['Dragon'] = 'Leather',
 	['Elemental'] = 'Leather',
 	['Demon'] = 'Leather',
-	['Beast'] = 'Leather'
+	['Beast'] = 'Leather',
+	
+	-- Essences (elemental crafting materials)
+	['Essence of Water'] = 'Essences',
+	['Essence of Fire'] = 'Essences',
+	['Essence of Air'] = 'Essences',
+	['Essence of Earth'] = 'Essences'
 }
 
 --[[

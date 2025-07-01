@@ -3,13 +3,45 @@
 	Core functionality for inventory aggregation, categorization, and auto-organization
 --]]
 
+-- Debug output to help diagnose issues
+print("|cFF00FF00BagMaster|r: Starting initialization...")
+
+-- SimpleLogger integration for better debugging
+local function LogDebug(message, ...)
+	if SimpleLogger_LogInfo then
+		SimpleLogger_LogInfo(message, "BagMaster", ...)
+	else
+		-- Fallback to regular print if SimpleLogger not available
+		print("|cFF00FF00BagMaster|r: " .. message)
+	end
+end
+
+local function LogError(message, ...)
+	if SimpleLogger_LogError then
+		SimpleLogger_LogError(message, "BagMaster", ...)
+	else
+		print("|cFFFF0000BagMaster|r: " .. message)
+	end
+end
+
+local function LogInfo(message, ...)
+	if SimpleLogger_LogInfo then
+		SimpleLogger_LogInfo(message, "BagMaster", ...)
+	else
+		print("|cFF00FF00BagMaster|r: " .. message)
+	end
+end
+
 -- Safe Ace3 initialization - handle case where LibStub isn't loaded yet
 local BagMaster
 if LibStub then
+	LogInfo("LibStub found, attempting Ace3 initialization...")
 	local success, addon = pcall(function() return LibStub('AceAddon-3.0'):NewAddon('BagMaster', 'AceEvent-3.0', 'AceConsole-3.0') end)
 	if success then
+		LogInfo("Ace3 initialization successful")
 		BagMaster = addon
 	else
+		LogError("Ace3 initialization failed, using fallback")
 		-- Fallback: create basic addon structure
 		BagMaster = {}
 		BagMaster.frames = {}
@@ -17,6 +49,7 @@ if LibStub then
 		BagMaster.categorizedItems = {}
 	end
 else
+	LogError("LibStub not found, using fallback")
 	-- Fallback: create basic addon structure
 	BagMaster = {}
 	BagMaster.frames = {}
@@ -78,26 +111,34 @@ BINDING_NAME_BAGMASTER_ORGANIZE = GetLocalizedText('CmdOrganize', 'Organize Inve
 --]]
 
 function BagMaster:OnInitialize()
+	LogInfo("OnInitialize called")
+	
 	self.frames = {}
 	self.items = {}
 	self.categorizedItems = {}
 	self.currentView = 'bags' -- bags, bank, keyring
 	
+	LogInfo("Initializing settings...")
 	-- Initialize settings
 	self:InitializeSettings()
 	
+	LogInfo("Initializing classic UI elements...")
 	-- Initialize classic UI elements
 	self:InitializeClassicUIElements()
 	
+	LogInfo("Hooking bag events...")
 	-- Hook into bag events
 	self:HookBagEvents()
 	
+	LogInfo("Registering slash commands...")
 	-- Register slash commands
 	self:RegisterSlashCommands()
 	
+	LogInfo("Creating main frame...")
 	-- Create main frame
 	self:CreateMainFrame()
 	
+	LogInfo("Hooking bag opening functions...")
 	-- Hook into bag opening functions
 	self:HookBagOpening()
 	
@@ -119,6 +160,7 @@ end
 
 -- Fallback initialization for when Ace3 isn't available
 if not BagMaster.OnInitialize then
+	LogError("Using fallback initialization (Ace3 not available)")
 	-- Create event frame for fallback event handling
 	local eventFrame = CreateFrame("Frame")
 	eventFrame:RegisterEvent("PLAYER_LOGIN")
@@ -131,27 +173,34 @@ if not BagMaster.OnInitialize then
 	
 	eventFrame:SetScript("OnEvent", function(self, event, ...)
 		if event == "PLAYER_LOGIN" then
+			LogInfo("PLAYER_LOGIN event received, initializing...")
 			-- Initialize addon
 			BagMaster.frames = {}
 			BagMaster.items = {}
 			BagMaster.categorizedItems = {}
 			BagMaster.currentView = 'bags' -- bags, bank, keyring
 			
+			LogInfo("Initializing settings...")
 			-- Initialize settings
 			BagMaster:InitializeSettings()
 			
+			LogInfo("Initializing classic UI elements...")
 			-- Initialize classic UI elements
 			BagMaster:InitializeClassicUIElements()
 			
+			LogInfo("Hooking bag events...")
 			-- Hook into bag events
 			BagMaster:HookBagEvents()
 			
+			LogInfo("Registering slash commands...")
 			-- Register slash commands
 			BagMaster:RegisterSlashCommands()
 			
+			LogInfo("Creating main frame...")
 			-- Create main frame
 			BagMaster:CreateMainFrame()
 			
+			LogInfo("Hooking bag opening functions...")
 			-- Hook into bag opening functions
 			BagMaster:HookBagOpening()
 			
@@ -170,7 +219,9 @@ if not BagMaster.OnInitialize then
 			BagMaster:AutoOrganize()
 		end
 	end)
-end
+	else
+		LogInfo("Ace3 initialization successful, OnInitialize will be called")
+	end
 
 --[[
 	Settings Management
@@ -463,14 +514,29 @@ end
 --]]
 
 function BagMaster:RegisterSlashCommands()
-	self:RegisterChatCommand('bagmaster', 'HandleSlashCommand')
-	self:RegisterChatCommand('bm', 'HandleSlashCommand')
+	if self.RegisterChatCommand then
+		-- Ace3 method
+		self:RegisterChatCommand('bagmaster', 'HandleSlashCommand')
+		self:RegisterChatCommand('bm', 'HandleSlashCommand')
+	else
+		-- Fallback method
+		SLASH_BAGMASTER1 = "/bagmaster"
+		SLASH_BAGMASTER2 = "/bm"
+		SlashCmdList["BAGMASTER"] = function(msg)
+			BagMaster:HandleSlashCommand(msg)
+		end
+		LogInfo("Using fallback slash command registration")
+	end
 end
 
 function BagMaster:HandleSlashCommand(input)
 	local command = string.lower(input)
 	
-	if command == 'sort' or command == 's' then
+	if command == 'test' then
+		LogInfo("Test command received!")
+		self:CreateMainFrame()
+		return
+	elseif command == 'sort' or command == 's' then
 		self:OrganizeInventory()
 		print("|cFF00FF00BagMaster|r: Inventory sorted.")
 	elseif command == 'organize' or command == 'o' then
@@ -499,6 +565,7 @@ end
 
 function BagMaster:ShowHelp()
 	print("|cFF00FF00BagMaster Commands:|r")
+	print("  /bagmaster test - Test the addon (creates test frame)")
 	print("  /bagmaster sort - Sort inventory")
 	print("  /bagmaster organize - Organize inventory")
 	print("  /bagmaster toggle - Toggle window")
@@ -514,8 +581,44 @@ end
 --]]
 
 function BagMaster:CreateMainFrame()
-	-- TODO: Create the main UI frame
-	-- This will be implemented in the components
+	LogInfo("CreateMainFrame called")
+	
+	-- Create a simple test frame to verify the addon is working
+	local testFrame = CreateFrame("Frame", "BagMasterTestFrame", UIParent)
+	testFrame:SetSize(200, 100)
+	testFrame:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+	testFrame:SetBackdrop({
+		bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
+		edgeFile = "Interface\\DialogFrame\\UI-DialogBox-Border",
+		tile = true,
+		tileSize = 32,
+		edgeSize = 32,
+		insets = {left = 8, right = 8, top = 8, bottom = 8}
+	})
+	testFrame:SetBackdropColor(0, 0, 0, 0.8)
+	testFrame:SetBackdropBorderColor(0.6, 0.6, 0.6, 0.8)
+	
+	local title = testFrame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+	title:SetPoint("TOP", testFrame, "TOP", 0, -10)
+	title:SetText("BagMaster Test")
+	title:SetTextColor(1, 1, 0)
+	
+	local status = testFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+	status:SetPoint("CENTER", testFrame, "CENTER", 0, 0)
+	status:SetText("Addon is working!")
+	status:SetTextColor(0, 1, 0)
+	
+	local closeButton = CreateFrame("Button", nil, testFrame, "UIPanelCloseButton")
+	closeButton:SetPoint("TOPRIGHT", testFrame, "TOPRIGHT", 0, 0)
+	closeButton:SetScript("OnClick", function() testFrame:Hide() end)
+	
+	-- Hide the test frame after 5 seconds
+	C_Timer.After(5, function() testFrame:Hide() end)
+	
+	LogInfo("Test frame created successfully")
+	
+	-- Store reference to main frame
+	self.mainFrame = testFrame
 end
 
 function BagMaster:UpdateDisplay()
@@ -524,8 +627,16 @@ function BagMaster:UpdateDisplay()
 end
 
 function BagMaster:ToggleMainFrame()
-	-- TODO: Toggle the main frame visibility
-	-- This will be implemented in the components
+	if self.mainFrame then
+		if self.mainFrame:IsShown() then
+			self.mainFrame:Hide()
+		else
+			self.mainFrame:Show()
+		end
+	else
+		LogError("Main frame not found, creating new one...")
+		self:CreateMainFrame()
+	end
 end
 
 function BagMaster:HookBagEvents()

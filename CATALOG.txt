@@ -316,6 +316,83 @@ Clean and minimalistic nameplate addon inspired by TidyPlates, providing enhance
 
 ---
 
+## 📝 SimpleLogger
+**Version:** 1.0.0  
+**Author:** tobarisu  
+**Interface:** 30300 (WoW 3.3.5a)  
+**Status:** ✅ Complete
+
+### Description
+Lightweight logging system for debugging WoW 3.3.5a addons. Provides simple error logging, export functionality, and integration with other addons for efficient debugging.
+
+### Key Features
+- **🔍 Error Logging**: Captures and logs errors with timestamps and stack traces
+- **📊 Log Export**: Export logs to chat for easy debugging
+- **🎛️ Configurable Levels**: Toggle ERROR, WARNING, and INFO logging independently
+- **🔗 Addon Integration**: Global functions for other addons to use
+- **📈 Statistics**: Track log counts and uptime
+- **⚡ Lightweight**: Minimal performance impact
+- **🔄 Real-time**: Immediate logging with color-coded output
+- **💾 Persistent**: Logs saved in session and exportable
+
+### Commands
+- `/logger` or `/sl` - Show help
+- `/logger export` - Export logs to chat
+- `/logger clear` - Clear current logs
+- `/logger stats` - Show logging statistics
+- `/logger errors` - Toggle error logging
+- `/logger warnings` - Toggle warning logging
+- `/logger info` - Toggle info logging
+
+### Global Functions for Other Addons
+```lua
+SimpleLogger_LogError(message, addon)
+SimpleLogger_LogWarning(message, addon)
+SimpleLogger_LogInfo(message, addon)
+```
+
+### Settings
+- **Enabled**: Toggle the entire addon
+- **Log Errors**: Capture error messages
+- **Log Warnings**: Capture warning messages
+- **Log Info**: Capture info messages
+- **Max Logs**: Maximum number of logs to keep (default: 500)
+
+### How It Works
+- Hooks into common error sources (CreateFrame, pcall)
+- Provides global functions for other addons
+- Stores logs in memory with timestamps
+- Exports logs to chat with color coding
+- Maintains statistics and uptime tracking
+
+### Technical Details
+- **Dependencies**: None (standalone)
+- **Event Handling**: PLAYER_LOGIN
+- **Performance**: Minimal impact, efficient logging
+- **Compatibility**: WoW 3.3.5a native
+- **Cross-Character**: Global settings work across all characters
+- **Integration**: Global functions for addon integration
+
+### Current Features
+- ✅ Error logging with stack traces
+- ✅ Warning and info logging
+- ✅ Log export to chat
+- ✅ Configurable log levels
+- ✅ Statistics tracking
+- ✅ Global integration functions
+- ✅ Color-coded output
+- ✅ Global settings across characters
+
+### Integration Example
+```lua
+-- In any addon
+if SimpleLogger_LogError then
+    SimpleLogger_LogError("Something went wrong", "MyAddon")
+end
+```
+
+---
+
 ## 📊 MeterMaid
 **Version:** 1.0.0  
 **Author:** tobarisu  
@@ -393,6 +470,131 @@ Simple and elegant damage/threat meter with a translucent, movable window and ta
 
 ---
 
+## 🎯 MoveStuff
+**Version:** 1.0.0  
+**Author:** tobarisu  
+**Interface:** 30300 (WoW 3.3.5a)  
+**Status:** ✅ Active Development
+
+### Description
+Simple UI frame mover that allows moving and resizing any UI element while retaining the classic UI feel.
+
+### Key Features
+- **Dynamic Frame Discovery**: Automatically discovers all movable UI frames without hardcoded lists
+- **Frame Categorization**: Organizes frames into logical categories (Player, Target, Buffs, Bags, Chat, Minimap, Action Bars, Other)
+- **Visual Frame Selector**: Clean UI for browsing and selecting frames to move
+- **Search Functionality**: Find frames quickly with real-time search
+- **Frame Highlighting**: Visual feedback when selecting frames to move
+- **Click-to-Place**: Simple click interface for positioning frames
+- **Position Persistence**: Saves frame positions globally across all characters
+- **Combat Protection**: Prevents frame movement during combat
+- **Classic UI Retention**: Maintains the original WoW UI appearance
+
+### Commands
+- `/movestuff` or `/ms` - Show frame selector
+- `/movestuff [frame]` - Move a specific frame directly
+- `/movestuff reset` - Reset all frame positions
+- `/movestuff help` - Show help
+
+### How It Works
+- Dynamically scans for all available UI frames
+- Categorizes frames by type and function
+- Provides visual interface for frame selection
+- Saves positions globally across all characters
+- Prevents movement during combat for safety
+
+### Technical Details
+- **Dependencies**: Ace3 libraries (with fallbacks)
+- **Saved Variables**: Global only (MoveStuffDB)
+- **Frame Types**: Supports Frame, Button, CheckButton, StatusBar, FontString, Texture, GameTooltip, MessageFrame, EditBox, Slider, Minimap
+- **Protected Frames**: Excludes system-critical frames (UIParent, WorldFrame, etc.)
+- **Performance**: Efficient frame discovery and categorization
+- **Compatibility**: WoW 3.3.5a native
+- **Cross-Character**: Global settings work across all characters
+
+### Current Features
+- ✅ Dynamic frame discovery
+- ✅ Frame categorization
+- ✅ Visual frame selector
+- ✅ Search functionality
+- ✅ Frame highlighting
+- ✅ Click-to-place movement
+- ✅ Position persistence
+- ✅ Combat protection
+- ✅ Global settings across characters
+
+### Planned Features
+- [ ] Frame resizing capabilities
+- [ ] Frame rotation options
+- [ ] Import/export frame layouts
+- [ ] Advanced frame filtering
+- [ ] Frame grouping functionality
+
+---
+
+## ⌨️ Bartender4_Fanversion
+**Version:** 1.0.0  
+**Author:** tobarisu  
+**Interface:** 30300 (WoW 3.3.5a)  
+**Status:** ✅ Active Development
+
+### Description
+Fan version of Bartender4 with enhanced keybinding features and action bar management.
+
+### Key Features
+- **Enhanced Keybinding Mode**: Hover over action buttons and press keys to bind them instantly
+- **Visual Feedback**: Buttons highlight when hovering in keybinding mode with button info display
+- **Modifier Support**: Full support for SHIFT, CTRL, ALT combinations (e.g., SHIFT-E, CTRL-ALT-1)
+- **Mouse Button Binding**: Bind mouse buttons and mouse wheel actions
+- **Action Bar Management**: Control visibility, position, scale, and alpha of all action bars
+- **Global Settings**: Settings shared across all characters
+- **Combat Protection**: Prevents keybinding changes during combat
+- **Persistent Storage**: Keybindings saved and restored between sessions
+- **Classic UI Retention**: Maintains original WoW 3.3.5a action bar appearance
+
+### Commands
+- `/bt4` or `/bartender4` - Toggle keybinding mode
+- `/bt4 keybind` - Enter keybinding mode
+- `/bt4 config` - Show configuration (placeholder)
+- `/bt4 reset` - Reset all settings
+- `/bt4 help` - Show help
+
+### How It Works
+- Monitors action bar events for button updates
+- Provides hover-to-bind functionality for action buttons
+- Supports all modifier key combinations
+- Saves keybindings globally across characters
+- Maintains compatibility with default action bars
+
+### Technical Details
+- **Dependencies**: Ace3 libraries (with fallbacks)
+- **Saved Variables**: Global only (Bartender4_FanversionDB)
+- **Action Bars**: Supports all 5 action bars, pet bar, stance bar
+- **Keybinding Types**: Keyboard keys, mouse buttons, modifier combinations
+- **Events**: ACTIONBAR_UPDATE_STATE, ACTIONBAR_UPDATE_COOLDOWN, ACTIONBAR_UPDATE_USABLE, ACTIONBAR_UPDATE_RANGE
+- **Performance**: Efficient keybinding management
+- **Compatibility**: WoW 3.3.5a native
+- **Cross-Character**: Global settings work across all characters
+
+### Current Features
+- ✅ Enhanced keybinding mode
+- ✅ Visual feedback system
+- ✅ Modifier key support
+- ✅ Mouse button binding
+- ✅ Action bar management
+- ✅ Combat protection
+- ✅ Persistent storage
+- ✅ Global settings across characters
+
+### Planned Features
+- [ ] Advanced action bar configuration
+- [ ] Custom action bar layouts
+- [ ] Profile system for different characters
+- [ ] Action bar themes
+- [ ] Integration with other addons
+
+---
+
 ## 📋 Addon Development Guidelines
 
 ### Code Standards
@@ -466,74 +668,3 @@ This is a personal addon collection, but suggestions and feedback are welcome. A
 *Last Updated: 2024*  
 *WoW Version: 3.3.5a (WotLK)*  
 *Interface Version: 30300* 
-
-### 5. MoveStuff
-**Description**: Simple UI frame mover that allows moving and resizing any UI element while retaining the classic UI feel.
-
-**Key Features**:
-- **Dynamic Frame Discovery**: Automatically discovers all movable UI frames without hardcoded lists
-- **Frame Categorization**: Organizes frames into logical categories (Player, Target, Buffs, Bags, Chat, Minimap, Action Bars, Other)
-- **Visual Frame Selector**: Clean UI for browsing and selecting frames to move
-- **Search Functionality**: Find frames quickly with real-time search
-- **Frame Highlighting**: Visual feedback when selecting frames to move
-- **Click-to-Place**: Simple click interface for positioning frames
-- **Position Persistence**: Saves frame positions globally across all characters
-- **Combat Protection**: Prevents frame movement during combat
-- **Classic UI Retention**: Maintains the original WoW UI appearance
-
-**Commands**:
-- `/movestuff` or `/ms` - Show frame selector
-- `/movestuff [frame]` - Move a specific frame directly
-- `/movestuff reset` - Reset all frame positions
-- `/movestuff help` - Show help
-
-**Technical Details**:
-- **Interface**: 30300 (WoW 3.3.5a)
-- **Dependencies**: Ace3 libraries (with fallbacks)
-- **Saved Variables**: Global only (MoveStuffDB)
-- **Frame Types**: Supports Frame, Button, CheckButton, StatusBar, FontString, Texture, GameTooltip, MessageFrame, EditBox, Slider, Minimap
-- **Protected Frames**: Excludes system-critical frames (UIParent, WorldFrame, etc.)
-
-**Files**:
-- `MoveStuff.toc` - Addon manifest
-- `core.lua` - Main logic, frame discovery, and movement
-- `ui.lua` - Frame selector interface
-- `localization/enUS.lua` - English localization 
-
-### 6. Bartender4_Fanversion
-**Description**: Fan version of Bartender4 with enhanced keybinding features and action bar management.
-
-**Key Features**:
-- **Enhanced Keybinding Mode**: Hover over action buttons and press keys to bind them instantly
-- **Visual Feedback**: Buttons highlight when hovering in keybinding mode with button info display
-- **Modifier Support**: Full support for SHIFT, CTRL, ALT combinations (e.g., SHIFT-E, CTRL-ALT-1)
-- **Mouse Button Binding**: Bind mouse buttons and mouse wheel actions
-- **Action Bar Management**: Control visibility, position, scale, and alpha of all action bars
-- **Global Settings**: Settings shared across all characters
-- **Combat Protection**: Prevents keybinding changes during combat
-- **Persistent Storage**: Keybindings saved and restored between sessions
-- **Classic UI Retention**: Maintains original WoW 3.3.5a action bar appearance
-
-**Commands**:
-- `/bt4` or `/bartender4` - Toggle keybinding mode
-- `/bt4 keybind` - Enter keybinding mode
-- `/bt4 config` - Show configuration (placeholder)
-- `/bt4 reset` - Reset all settings
-- `/bt4 help` - Show help
-
-**Technical Details**:
-- **Interface**: 30300 (WoW 3.3.5a)
-- **Dependencies**: Ace3 libraries (with fallbacks)
-- **Saved Variables**: Global only (Bartender4_FanversionDB)
-- **Action Bars**: Supports all 5 action bars, pet bar, stance bar
-- **Keybinding Types**: Keyboard keys, mouse buttons, modifier combinations
-- **Events**: ACTIONBAR_UPDATE_STATE, ACTIONBAR_UPDATE_COOLDOWN, ACTIONBAR_UPDATE_USABLE, ACTIONBAR_UPDATE_RANGE
-
-**Files**:
-- `Bartender4_Fanversion.toc` - Addon manifest
-- `core.lua` - Main logic and action bar management
-- `keybinding.lua` - Enhanced keybinding functionality
-- `actionBars.lua` - Action bar handling (placeholder)
-- `actionButton.lua` - Action button handling (placeholder)
-- `ui.lua` - User interface components (placeholder)
-- `localization/enUS.lua` - English localization 

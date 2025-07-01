@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: SimpleLogger
+## Author: tobarisu
+## Notes: Lightweight logging for WoW 3.3.5a addon debugging
+## SavedVariables: SimpleLoggerDB
+## Version: 1.0.0
+
+core.lua 
